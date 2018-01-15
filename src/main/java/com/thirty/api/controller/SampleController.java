@@ -1,9 +1,13 @@
 package com.thirty.api.controller;
 
 import com.thirty.api.domain.SampleVO;
+import com.thirty.api.service.SampleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by ByeongChan on 2018. 1. 15..
@@ -15,19 +19,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/sample")
 public class SampleController {
 
-    @ApiOperation(value = "hello", notes = "print Hello")
-    @RequestMapping("/hello")
-    public String sayHello(){
-        return "Hello World";
-    }
+    @Autowired
+    SampleService sampleService;
+
+    @ApiOperation(value = "findAll", notes = "select all sampleVO")
+    @RequestMapping(value = "findAll", method = RequestMethod.GET)
+    public List<SampleVO> findAll(){ return sampleService.findAll(); }
 
     @ApiOperation(value = "save", notes = "save Sample")
     @RequestMapping(value = "save/{val1}", method = RequestMethod.POST)
-    public SampleVO saveSample(@PathVariable String val1){
-        SampleVO vo = SampleVO.build(val1);
-
-        System.out.println(vo);
-
-        return vo;
+    public String saveSample(@PathVariable String val1){
+        try {
+            sampleService.save(SampleVO.build(val1));
+            return "save success";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "save fail";
+        }
     }
 }

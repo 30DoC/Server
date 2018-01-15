@@ -3,9 +3,7 @@ package com.thirty.api.controller;
 import com.thirty.api.domain.SampleVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by ByeongChan on 2018. 1. 15..
@@ -23,13 +21,10 @@ public class SampleController {
         return "Hello World";
     }
 
-    @ApiOperation(value = "make", notes = "make Sample")
-    @RequestMapping("/make")
-    public SampleVO makeSample(){
-        SampleVO vo = new SampleVO();
-
-        vo.setVal1("v1");
-        vo.setVal2("v2");
+    @ApiOperation(value = "save", notes = "save Sample")
+    @RequestMapping(value = "save/{val1}", method = RequestMethod.POST)
+    public SampleVO saveSample(@PathVariable String val1){
+        SampleVO vo = SampleVO.build(val1);
 
         System.out.println(vo);
 

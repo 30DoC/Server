@@ -1,6 +1,7 @@
 package com.thirty.api.controller;
 
 import com.thirty.api.domain.Member;
+import com.thirty.api.dto.StatusResponse;
 import com.thirty.api.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,14 +23,18 @@ public class LoginController {
 
     @ApiOperation(value = "login", notes = "login (return member status)")
     @RequestMapping(value = "login/{uniqueKey}", method = RequestMethod.POST)
-    public boolean login(@PathVariable String uniqueKey){
+    public StatusResponse login(@PathVariable String uniqueKey){
 
         Member member = loginService.findByUniqueKey(uniqueKey);
 
-        if(member == null){
-
+        if(member == null) {
+            return StatusResponse.build(-1);
         }
 
-        return true;
+        if(member.isStatus()){
+            return StatusResponse.build(1);
+        } else{
+            return StatusResponse.build(0);
+        }
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 
 /**
- * Created by ByeongChan on 2018. 1. 16..
+ * Created by ByeongChan on 2018. 1. 18..
  */
 
 @Setter
@@ -16,24 +16,28 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @EntityListeners(value = { AuditingEntityListener.class })
-@Table(name="member")
-public class Member {
+@Table(name="quiz")
+public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
+    private Long quizId;
+
+    @Column
     private Long memberId;
 
     @Column
-    private String uniqueKey;
+    private String question;
 
     @Column
-    private boolean status;
+    private boolean answer;
 
-    public static Member build(String uniqueKey, boolean status) {
-        return Member.builder()
-                .uniqueKey(uniqueKey)
-                .status(status)
+    public static Quiz build(Long memberId, String question, boolean answer) {
+        return Quiz.builder()
+                .memberId(memberId)
+                .question(question)
+                .answer(answer)
                 .build();
     }
 }

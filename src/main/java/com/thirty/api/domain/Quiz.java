@@ -11,6 +11,7 @@ import javax.persistence.*;
 
 @Setter
 @Getter
+@ToString(exclude = "member")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

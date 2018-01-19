@@ -25,8 +25,9 @@ public class Quiz {
     @Column
     private Long quizId;
 
+    @ManyToOne
     @Column
-    private Long memberId;
+    private Member member;
 
     @Column
     private String question;
@@ -34,9 +35,9 @@ public class Quiz {
     @Column
     private boolean answer;
 
-    public static Quiz build(Long memberId, String question, boolean answer) {
+    public static Quiz build(Member member, String question, boolean answer) {
         return Quiz.builder()
-                .memberId(memberId)
+                .member(member)
                 .question(question)
                 .answer(answer)
                 .build();

@@ -29,6 +29,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-validation')
 	compile('org.springframework.boot:spring-boot-starter-web')
 
+	//Web Socket
+	compile('org.springframework.boot:spring-boot-starter-websocket')
+
 	//Json
 	compile group: 'org.json', name: 'json', version: '20170516'
 

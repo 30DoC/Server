@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 @Entity
 @EntityListeners(value = { AuditingEntityListener.class })
 @Table(name="member")
-public class Member {
+public class Member implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

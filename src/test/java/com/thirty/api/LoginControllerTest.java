@@ -21,7 +21,7 @@ public class LoginControllerTest {
 
     @Test
     public void saveTest(){
-        Member member = Member.build("uniqueTest", false);
+        Member member = Member.build("uniqueTest1", false);
         loginService.save(member);
     }
 }

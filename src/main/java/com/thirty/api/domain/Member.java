@@ -31,9 +31,9 @@ public class Member {
     @Column
     private boolean status;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="memId")
-    private List<Quiz> quizList;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name="memId")
+//    private List<Quiz> quizList;
 
     public static Member build(String uniqueKey, boolean status) {
         return Member.builder()

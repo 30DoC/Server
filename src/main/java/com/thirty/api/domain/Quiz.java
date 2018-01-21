@@ -25,19 +25,14 @@ public class Quiz {
     @Column
     private Long quizId;
 
-    @ManyToOne
-    @Column
-    private Member member;
-
     @Column
     private String question;
 
     @Column
     private boolean answer;
 
-    public static Quiz build(Member member, String question, boolean answer) {
+    public static Quiz build(String question, boolean answer) {
         return Quiz.builder()
-                .member(member)
                 .question(question)
                 .answer(answer)
                 .build();

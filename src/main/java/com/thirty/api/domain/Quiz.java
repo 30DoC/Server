@@ -26,6 +26,9 @@ public class Quiz {
     private Long quizId;
 
     @Column
+    private Long memberId; // Foreign Key
+
+    @Column
     private String question;
 
     @Column

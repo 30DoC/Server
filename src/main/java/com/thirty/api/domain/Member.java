@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by ByeongChan on 2018. 1. 16..
@@ -29,6 +30,10 @@ public class Member {
 
     @Column
     private boolean status;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="memId")
+    private List<Quiz> quizList;
 
     public static Member build(String uniqueKey, boolean status) {
         return Member.builder()

@@ -13,6 +13,7 @@ import java.util.List;
 
 @Setter
 @Getter
+@ToString(exclude = "quizList")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,9 +33,9 @@ public class Member implements Serializable{
     @Column
     private boolean status;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name="memberId")
-//    private List<Quiz> quizList;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="memberId")
+    private List<Quiz> quizList;
 
     public static Member build(String uniqueKey, boolean status) {
         return Member.builder()

@@ -1,10 +1,13 @@
 package com.thirty.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +35,11 @@ public class Member implements Serializable{
 
     @Column
     private boolean status;
+
+    @Column
+    @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+    private Date regdate;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="memberId")

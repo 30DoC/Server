@@ -30,7 +30,7 @@ public class LoginControllerTest {
 
     @Test
     public void insertQuiz(){
-        Member member = Member.build("uniuni", false);
+        Member member = Member.build("uniuni12", false);
 
         Quiz quiz1 = Quiz.build("q1", false);
         Quiz quiz2 = Quiz.build("q2", true);

@@ -33,7 +33,7 @@ public class Member implements Serializable{
     private boolean status;
 
 //    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name="memId")
+//    @JoinColumn(name="memberId")
 //    private List<Quiz> quizList;
 
     public static Member build(String uniqueKey, boolean status) {

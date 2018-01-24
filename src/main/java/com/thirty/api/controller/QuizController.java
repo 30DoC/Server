@@ -24,12 +24,12 @@ public class QuizController {
     @Autowired
     LoginService quizService;
 
-    @ApiOperation(value = "quiz", notes = "quiz (return random quiz)")
-    @RequestMapping(value = "randomQuiz", method = RequestMethod.GET)
-    public List<Quiz> randomQuiz(){
-
-        // 컨트롤러에서는 최대한 해당 요청에 맞는 비즈니스 연결과 Exception처리만 ?
-
-        return quizService.randomSampling();
-    }
+//    @ApiOperation(value = "quiz", notes = "quiz (return random quiz)")
+//    @RequestMapping(value = "randomQuiz", method = RequestMethod.GET)
+//    public List<Quiz> randomQuiz(){
+//
+//        // 컨트롤러에서는 최대한 해당 요청에 맞는 비즈니스 연결과 Exception처리만 ?
+//
+//        return quizService.randomSampling();
+//    }
 }

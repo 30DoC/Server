@@ -30,12 +30,14 @@ public class LoginControllerTest {
 
     @Test
     public void insertQuiz(){
-        Member member = Member.build("uniuni12", false);
+        Member member = Member.build("unium", false);
 
         Quiz quiz1 = Quiz.build("q1", false);
         Quiz quiz2 = Quiz.build("q2", true);
+        Quiz quiz3 = Quiz.build("q2", false);
+        Quiz quiz4 = Quiz.build("q2", true);
 
-        member.setQuizList(Arrays.asList(quiz1, quiz2));
+        member.setQuizList(Arrays.asList(quiz1, quiz2, quiz3, quiz4));
 
         loginService.save(member);
     }

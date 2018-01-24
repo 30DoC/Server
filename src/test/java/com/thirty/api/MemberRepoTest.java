@@ -24,8 +24,12 @@ public class MemberRepoTest {
     private MemberRepository memberRepository;
 
     @Test
-    public void saveTest(){
-        Member member = Member.build("uniqueTest1", false);
-        loginService.save(member);
+    public void randomSamplingTest(){
+        Member member = memberRepository.randomSampling();
+
+        System.out.println("---------------------------");
+        System.out.println(member.getMemberId());
+        System.out.println(member.getUniqueKey());
+        System.out.println("---------------------------");
     }
 }

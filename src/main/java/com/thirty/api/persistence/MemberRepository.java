@@ -2,6 +2,7 @@ package com.thirty.api.persistence;
 
 import com.thirty.api.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,5 +11,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
-    public Member findByUniqueKey(String uniqueKey);
+    Member findByUniqueKey(String uniqueKey);
+
+    @Query(value = "SELECT * FROM member WHERE status=0 ORDER BY rand() LIMIT 1", nativeQuery = true)
+    Member randomSampling();
 }

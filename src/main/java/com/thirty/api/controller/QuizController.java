@@ -28,16 +28,8 @@ public class QuizController {
     @RequestMapping(value = "randomQuiz", method = RequestMethod.GET)
     public List<Quiz> randomQuiz(){
 
-        Member member = quizService.randomSampling();
+        // 컨트롤러에서는 최대한 해당 요청에 맞는 비즈니스 연결과 Exception처리만 ?
 
-        if(member == null) { // Exception 처리
-
-        }
-
-        if(member.isStatus()){
-            return StatusResponse.build(1);
-        } else{
-            return StatusResponse.build(0);
-        }
+        return quizService.randomSampling();
     }
 }

@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -22,7 +23,7 @@ import java.util.Date;
 @Entity
 @EntityListeners(value = {AuditingEntityListener.class})
 @Table(name = "quiz")
-public class Quiz {
+public class Quiz implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

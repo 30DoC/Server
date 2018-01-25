@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/message")
 public class MessageController {
-    @MessageMapping("/hello") // 해당 매핑 주소에 메시자가 도착하면 이 메소드가 실행된다.
-    @SendTo("/topic/roomId") // 이 메소드에서 반환된 객체를 유저에게 전달
-    public Message broadcasting(Message message) throws Exception{
-        System.out.println("message : " + message.toString());
+    @MessageMapping("/chat") // 해당 매핑 주소에 메시자가 도착하면 이 메소드가 실행된다.
+    @SendTo("/topic/chat") // 이 메소드에서 반환된 객체를 유저에게 전달
+    public MessageVO chat(MessageVO message) throws Exception{
+        System.out.println("message : " + message);
         return message;
     }
 

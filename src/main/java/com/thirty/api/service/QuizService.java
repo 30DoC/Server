@@ -23,10 +23,16 @@ public class QuizService {
 
     public void save(Quiz quiz){ quizRepository.save(quiz); }
 
-//    public List<Quiz> randomSampling(){
-//
-//        Member member = memberRepository.randomSampling();
-//
-//        return null;
-//    }
+    public List<Quiz> randomSampling(){
+
+        Member member = memberRepository.randomSampling();
+
+        if(member == null){
+            return null;
+        }
+
+        List<Quiz> quizList = member.getQuizList();
+
+        return quizList;
+    }
 }

@@ -1,7 +1,7 @@
 package com.thirty.api.controller;
 
+import com.thirty.api.dto.MessageVO;
 import io.swagger.annotations.Api;
-import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/message")
 public class MessageController {
+
     @MessageMapping("/chat") // 해당 매핑 주소에 메시자가 도착하면 이 메소드가 실행된다.
     @SendTo("/topic/chat") // 이 메소드에서 반환된 객체를 유저에게 전달
     public MessageVO chat(MessageVO message) throws Exception{

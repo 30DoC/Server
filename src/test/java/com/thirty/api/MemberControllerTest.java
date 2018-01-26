@@ -2,7 +2,7 @@ package com.thirty.api;
 
 import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
-import com.thirty.api.service.LoginService;
+import com.thirty.api.service.MemberService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +17,15 @@ import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class LoginControllerTest {
+public class MemberControllerTest {
 
     @Autowired
-    private LoginService loginService;
+    private MemberService memberService;
 
     @Test
     public void saveTest(){
         Member member = Member.build("uniqueTest1", false);
-        loginService.save(member);
+        memberService.save(member);
     }
 
     @Test
@@ -39,6 +39,6 @@ public class LoginControllerTest {
 
         member.setQuizList(Arrays.asList(quiz1, quiz2, quiz3, quiz4));
 
-        loginService.save(member);
+        memberService.save(member);
     }
 }

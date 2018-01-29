@@ -17,4 +17,6 @@ public class MemberService {
     public Member save(String uniqueKey){ return memberRepository.save(Member.build(uniqueKey, false)); }
 
     public Member findByUniqueKey(String uniqueKey){ return memberRepository.findByUniqueKey(uniqueKey); }
+
+    public Member findByMemberId(Long memberId){ return memberRepository.findOne(memberId); }
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @CrossOrigin(origins = "*")
-@Api(value = "Login API", description = "Login API", basePath = "/api/v1/login")
+@Api(value = "Member API", description = "Member API", basePath = "/api/v1/member")
 @RestController
 @RequestMapping("/api/v1/member")
 public class MemberController {
@@ -34,5 +34,18 @@ public class MemberController {
         } else{
             return -1L;
         }
+    }
+
+    @ApiOperation(value = "check member status", notes = "현재 사용자의 상태를 조회합니다. 채팅 중인지 아닌지를 리턴합니다 ")
+    @RequestMapping(value = "observeStatus", method = RequestMethod.POST)
+    public boolean observeStatus(@RequestBody Long memberId){
+
+        Member member = memberService.findByMemberId(memberId);
+
+        if(member == null){ // 예외처리
+            
+        }
+
+        return member.isStatus();
     }
 }

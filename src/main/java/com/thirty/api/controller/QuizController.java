@@ -25,7 +25,7 @@ public class QuizController {
     @Autowired
     QuizService quizService;
 
-    @ApiOperation(value = "quiz", notes = "quiz (return random quiz)")
+    @ApiOperation(value = "quiz", notes = "채팅 중이 아닌 사용자들을 대상으로 무작위로 선택하여 퀴즈 목록을 리턴합니다.")
     @RequestMapping(value = "randomQuiz", method = RequestMethod.GET)
     public List<Quiz> randomQuiz(){
 

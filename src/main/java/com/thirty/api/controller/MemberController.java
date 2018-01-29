@@ -43,7 +43,7 @@ public class MemberController {
         Member member = memberService.findByMemberId(memberId);
 
         if(member == null){ // 예외처리
-            
+
         }
 
         return member.isStatus();

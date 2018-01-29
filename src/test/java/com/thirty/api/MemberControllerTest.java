@@ -2,6 +2,7 @@ package com.thirty.api;
 
 import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
+import com.thirty.api.persistence.MemberRepository;
 import com.thirty.api.service.MemberService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,10 +23,12 @@ public class MemberControllerTest {
     @Autowired
     private MemberService memberService;
 
+    @Autowired
+    private MemberRepository memberRepository;
+
     @Test
-    public void saveTest(){
-        Member member = Member.build("uniqueTest1", false);
-        memberService.save(member);
+    public void loginTest(){
+        System.out.println(memberService.save("testUniqueKey"));
     }
 
     @Test
@@ -39,6 +42,6 @@ public class MemberControllerTest {
 
         member.setQuizList(Arrays.asList(quiz1, quiz2, quiz3, quiz4));
 
-        memberService.save(member);
+        memberRepository.save(member);
     }
 }

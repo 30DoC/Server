@@ -15,26 +15,24 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 @Api(value = "Login API", description = "Login API", basePath = "/api/v1/login")
 @RestController
-@RequestMapping("/api/v1/login")
+@RequestMapping("/api/v1/member")
 public class MemberController {
 
     @Autowired
     MemberService memberService;
 
-    @ApiOperation(value = "login", notes = "login (return member status)")
-    @RequestMapping(value = "login/{uniqueKey}", method = RequestMethod.POST)
-    public StatusResponse login(@PathVariable String uniqueKey){
+    @ApiOperation(value = "login", notes = "로그인 성공 시 회원 id값을 리턴하고 실패 시 -1을 리턴합니다.")
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public Long login(@RequestBody String uniqueKey){
 
         Member member = memberService.findByUniqueKey(uniqueKey);
 
         if(member == null) {
-            return StatusResponse.build(-1);
-        }
+            Member savedMember = memberService.save(uniqueKey);
 
-        if(member.isStatus()){
-            return StatusResponse.build(1);
+            return savedMember.getMemberId();
         } else{
-            return StatusResponse.build(0);
+            return -1L;
         }
     }
 }

@@ -16,7 +16,6 @@ import java.util.Date;
 
 @Setter
 @Getter
-@ToString(exclude = "member")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

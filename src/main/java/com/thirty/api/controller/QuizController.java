@@ -33,4 +33,11 @@ public class QuizController {
 
         return quizService.randomSampling();
     }
+
+    @ApiOperation(value = "answer", notes = "사용자가 답변을 입력한 퀴즈의 정답률을 리턴합니다.")
+    @RequestMapping(value = "answer", method = RequestMethod.POST)
+    public int correctAnswer(){
+
+        return 0;
+    }
 }

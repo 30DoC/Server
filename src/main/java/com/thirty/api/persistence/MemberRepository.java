@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     Member findByUniqueKey(String uniqueKey);
 
-    @Query(value = "SELECT * FROM member WHERE status=0 ORDER BY rand() LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM member WHERE status='WAITING' ORDER BY rand() LIMIT 1", nativeQuery = true)
     Member randomSampling();
 }

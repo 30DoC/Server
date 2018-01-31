@@ -1,15 +1,14 @@
 package com.thirty.api.controller;
 
+import com.thirty.api.dto.QuizRequest;
 import com.thirty.api.service.QuizService;
 import com.thirty.api.domain.Quiz;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,7 +24,7 @@ public class QuizController {
     @Autowired
     QuizService quizService;
 
-    @ApiOperation(value = "quiz", notes = "채팅 중이 아닌 사용자들을 대상으로 무작위로 선택하여 퀴즈 목록을 리턴합니다.")
+    @ApiOperation(value = "random quiz", notes = "채팅 중이 아닌 사용자들을 대상으로 무작위로 선택하여 퀴즈 목록을 리턴합니다.")
     @RequestMapping(value = "randomQuiz", method = RequestMethod.GET)
     public List<Quiz> randomQuiz(){
 
@@ -37,6 +36,15 @@ public class QuizController {
     @ApiOperation(value = "answer", notes = "사용자가 답변을 입력한 퀴즈의 정답률을 리턴합니다.")
     @RequestMapping(value = "answer", method = RequestMethod.POST)
     public int correctAnswer(){
+
+        return 0;
+    }
+
+    @ApiOperation(value = "quiz regist", notes = "사용자가 질문을 등록하는 API")
+    @RequestMapping(value = "registQuiz", method = RequestMethod.POST)
+    public int registQuiz(@RequestParam Long memberId, @RequestBody List<QuizRequest> questions){
+
+        quizService.saveQuiz(memberId, questions);
 
         return 0;
     }

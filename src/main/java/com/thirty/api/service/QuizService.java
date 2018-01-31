@@ -3,6 +3,7 @@ package com.thirty.api.service;
 import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
 import com.thirty.api.dto.QuizRequest;
+import com.thirty.api.dto.QuizResponse;
 import com.thirty.api.persistence.MemberRepository;
 import com.thirty.api.persistence.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,8 @@ public class QuizService {
         memberRepository.save(member);
     }
 
-    public List<Quiz> randomSampling(){
+    @Transactional
+    public QuizResponse randomSampling(){
 
         Member member = memberRepository.randomSampling();
 
@@ -50,6 +52,8 @@ public class QuizService {
 
         List<Quiz> quizList = member.getQuizList();
 
-        return quizList;
+        QuizResponse quizResponse = QuizResponse.build(member.getMemberId(), quizList);
+
+        return quizResponse;
     }
 }

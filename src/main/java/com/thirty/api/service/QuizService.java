@@ -4,6 +4,7 @@ import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
 import com.thirty.api.dto.QuizRequest;
 import com.thirty.api.dto.QuizResponse;
+import com.thirty.api.dto.SubmitAnswer;
 import com.thirty.api.persistence.MemberRepository;
 import com.thirty.api.persistence.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,20 @@ public class QuizService {
         QuizResponse quizResponse = QuizResponse.build(member.getMemberId(), quizList);
 
         return quizResponse;
+    }
+
+    @Transactional
+    public int calPercentCA(List<SubmitAnswer> submits){
+        int correctCnt = 0;
+
+        for (int i = 0; i < submits.size(); i++) {
+            if(submits.get(i).isAnswer() == submits.get(i).isSubmitAnswer()){
+                correctCnt++;
+            }
+        }
+
+        int percentCA = (int)(((double)correctCnt / (double)submits.size()) * 100.0);
+
+        return percentCA;
     }
 }

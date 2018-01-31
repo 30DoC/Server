@@ -35,9 +35,9 @@ public class MemberController {
         }
     }
 
-    @ApiOperation(value = "check member status", notes = "현재 사용자의 상태를 조회합니다. 채팅 중인지 아닌지를 리턴합니다 ")
+    @ApiOperation(value = "check member status", notes = "현재 사용자의 상태를 조회합니다.")
     @RequestMapping(value = "observeStatus", method = RequestMethod.POST)
-    public boolean observeStatus(@RequestBody Long memberId){
+    public String observeStatus(@RequestBody Long memberId){
 
         Member member = memberService.findByMemberId(memberId);
 
@@ -45,6 +45,6 @@ public class MemberController {
 
         }
 
-        return member.isStatus();
+        return member.getStatus();
     }
 }

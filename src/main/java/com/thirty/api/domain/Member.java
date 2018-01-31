@@ -34,7 +34,7 @@ public class Member implements Serializable{
     private String uniqueKey;
 
     @Column
-    private boolean status;
+    private String status;
 
     @Column
     @CreationTimestamp
@@ -45,7 +45,7 @@ public class Member implements Serializable{
     @JoinColumn(name="memberId")
     private List<Quiz> quizList;
 
-    public static Member build(String uniqueKey, boolean status) {
+    public static Member build(String uniqueKey, String status) {
         return Member.builder()
                 .uniqueKey(uniqueKey)
                 .status(status)

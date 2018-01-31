@@ -14,7 +14,7 @@ public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
-    public Member save(String uniqueKey){ return memberRepository.save(Member.build(uniqueKey, false)); }
+    public Member save(String uniqueKey){ return memberRepository.save(Member.build(uniqueKey, "WAITING")); }
 
     public Member findByUniqueKey(String uniqueKey){ return memberRepository.findByUniqueKey(uniqueKey); }
 

@@ -4,13 +4,11 @@ import com.thirty.api.dto.QuizRequest;
 import com.thirty.api.dto.QuizResponse;
 import com.thirty.api.dto.SubmitAnswer;
 import com.thirty.api.service.QuizService;
-import com.thirty.api.domain.Quiz;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**

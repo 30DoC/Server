@@ -13,6 +13,16 @@
 <div class="container">
     <form action="/api/v1/chat/sendVoice" method="post" enctype="multipart/form-data"> <!-- 추가 -->
 
+        <div class="form-group">
+            <label for="roomId">방 번호</label>
+            <input type="number" class="form-control" id="roomId" name="roomId" placeholder="내용을 입력하세요.">
+        </div>
+
+        <div class="form-group">
+            <label for="registId">작성자</label>
+            <input type="number" class="form-control" id="registId" name="registId" placeholder="내용을 입력하세요.">
+        </div>
+
         <input type="file" name="files"> <!-- 추가 -->
 
         <button type="submit" class="btn btn-primary">작성</button>

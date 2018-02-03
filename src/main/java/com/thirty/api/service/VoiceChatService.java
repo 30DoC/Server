@@ -3,10 +3,12 @@ package com.thirty.api.service;
 import com.thirty.api.domain.ChatRoom;
 import com.thirty.api.domain.ChatVoice;
 import com.thirty.api.persistence.ChatRoomRepository;
+import com.thirty.api.persistence.ChatVoiceRepository;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -24,12 +26,16 @@ public class VoiceChatService {
     @Autowired
     ChatRoomRepository chatRoomRepository;
 
-    public Long createRoom(Long user1Id, Long user2Id){
-        ChatRoom createRoom = chatRoomRepository.save(ChatRoom.build(user1Id, user2Id));
+    @Autowired
+    ChatVoiceRepository chatVoiceRepository;
 
-        return createRoom.getRoomId();
+    public ChatRoom createRoom(Long user1Id, Long user2Id){
+        ChatRoom createdRoom = chatRoomRepository.save(ChatRoom.build(user1Id, user2Id));
+
+        return createdRoom;
     }
 
+    @Transactional
     public void sendVoice(Long roomId, Long registId, MultipartFile files) throws IOException{
         String sourceFileName = files.getOriginalFilename();
         String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
@@ -50,11 +56,9 @@ public class VoiceChatService {
         //////////// DB 저장
         ///////////////////////////////////////
 
-        ChatVoice chatVoice = ChatVoice.build(roomId, destinationFileName, fileUrl, registId);
-        List<ChatVoice> chatVoiceList = new ArrayList<>();
-        chatVoiceList.add(chatVoice);
-
         ChatRoom chatRoom = chatRoomRepository.findOne(roomId);
-        chatRoom.setChatVoiceList(chatVoiceList);
+        ChatVoice chatVoice = ChatVoice.build(chatRoom.getRoomId(), destinationFileName, fileUrl, registId);
+
+        chatVoiceRepository.save(chatVoice);
     }
 }

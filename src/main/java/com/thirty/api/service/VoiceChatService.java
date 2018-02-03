@@ -10,6 +10,7 @@ import com.thirty.api.persistence.MemberRepository;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +36,9 @@ public class VoiceChatService {
     @Autowired
     MemberRepository memberRepository;
 
+    @Value("${voiceChatApi.fileUrl}")
+    private String fileUrl;
+
     public ChatRoom createRoom(Long user1Id, Long user2Id){
         ChatRoom createdRoom = chatRoomRepository.save(ChatRoom.build(user1Id, user2Id));
 
@@ -58,7 +62,6 @@ public class VoiceChatService {
 
         File destinationFile;
         String destinationFileName;
-        String fileUrl = "/Users/ByeongChan/";
 
         do {
             destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;

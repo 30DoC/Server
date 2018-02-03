@@ -25,6 +25,4 @@ dist/
 nbdist/
 .nb-gradle/
 
-application.properties
 application-local.properties
-application-production.properties

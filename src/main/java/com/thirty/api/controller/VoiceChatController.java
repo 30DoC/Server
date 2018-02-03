@@ -38,6 +38,14 @@ public class VoiceChatController {
         return createdRoom.getRoomId();
     }
 
+    @ApiOperation(value = "quit room", notes = "사용자 ID와 채팅 방 ID를 받아서 채팅 방을 나갑니다.")
+    @RequestMapping(value = "quitRoom", method = RequestMethod.POST)
+    public void quitRoom(@RequestParam Long roomId, @RequestParam Long userId) {
+
+        // Exception 처리
+        voiceChatService.quitRoom(roomId, userId);
+    }
+
     @ApiOperation(value = "voice", notes = "상대방에게 음성 파일을 전송합니다")
     @RequestMapping(value = "sendVoice", method = RequestMethod.POST)
     public @ResponseBody String sendVoice(@RequestParam Long roomId, @RequestParam Long registId, @RequestPart MultipartFile files) throws IOException{

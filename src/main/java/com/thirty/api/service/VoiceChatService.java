@@ -2,8 +2,10 @@ package com.thirty.api.service;
 
 import com.thirty.api.domain.ChatRoom;
 import com.thirty.api.domain.ChatVoice;
+import com.thirty.api.domain.Member;
 import com.thirty.api.persistence.ChatRoomRepository;
 import com.thirty.api.persistence.ChatVoiceRepository;
+import com.thirty.api.persistence.MemberRepository;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ByeongChan on 2018. 2. 1..
@@ -29,10 +29,23 @@ public class VoiceChatService {
     @Autowired
     ChatVoiceRepository chatVoiceRepository;
 
+    @Autowired
+    MemberRepository memberRepository;
+
     public ChatRoom createRoom(Long user1Id, Long user2Id){
         ChatRoom createdRoom = chatRoomRepository.save(ChatRoom.build(user1Id, user2Id));
 
         return createdRoom;
+    }
+
+    @Transactional
+    public void quitRoom(Long roomId, Long userId){
+        ChatRoom curRoom = chatRoomRepository.findOne(roomId);
+        // chatRoom valid 처리?
+
+        Member member = memberRepository.findOne(userId);
+        member.setStatus("WAITING");
+        memberRepository.save(member);
     }
 
     @Transactional

@@ -1,6 +1,7 @@
 package com.thirty.api.controller;
 
 import com.thirty.api.domain.ChatRoom;
+import com.thirty.api.dto.ChatVoiceResponse;
 import com.thirty.api.service.VoiceChatService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,7 +30,7 @@ public class VoiceChatController {
 
     @ApiOperation(value = "create room", notes = "두 사용자의 ID user1, user2를 받아서 채팅 방이 개설됩니다. 리턴 값은 개설된 방 ID")
     @RequestMapping(value = "createRoom", method = RequestMethod.POST)
-    public @ResponseBody Long createRoom(@RequestParam Long user1Id, @RequestParam Long user2Id) {
+    public Long createRoom(@RequestParam Long user1Id, @RequestParam Long user2Id) {
 
         // Exception 처리
 
@@ -48,10 +49,17 @@ public class VoiceChatController {
 
     @ApiOperation(value = "voice", notes = "상대방에게 음성 파일을 전송합니다")
     @RequestMapping(value = "sendVoice", method = RequestMethod.POST)
-    public @ResponseBody String sendVoice(@RequestParam Long roomId, @RequestParam Long registId, @RequestPart MultipartFile files) throws IOException{
+    public String sendVoice(@RequestParam Long roomId, @RequestParam Long registId, @RequestPart MultipartFile files) throws IOException{
 
         voiceChatService.sendVoice(roomId, registId, files);
 
         return "success";
+    }
+
+    @ApiOperation(value = "observe chat room", notes = "채팅 방 ID와 offset을 받으면 갱신 된 채팅 방 내용을 받아옵니다.")
+    @RequestMapping(value = "observeRoom", method = RequestMethod.POST)
+    public ChatVoiceResponse observeRoom(@RequestParam Long roomId, @RequestParam int offset) {
+
+        return voiceChatService.observeRoom(roomId, offset);
     }
 }

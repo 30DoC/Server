@@ -47,6 +47,14 @@ public class VoiceChatController {
         voiceChatService.quitRoom(roomId, userId);
     }
 
+    @ApiOperation(value = "choice", notes = "사용자가 채팅을 선택하고 있는 화면. 사용자의 상태를 CHOOSING으로 변경합니다.")
+    @RequestMapping(value = "choice", method = RequestMethod.POST)
+    public void choice(@RequestParam Long userId) {
+
+        // Exception 처리
+        voiceChatService.choice(userId);
+    }
+
     @ApiOperation(value = "voice", notes = "상대방에게 음성 파일을 전송합니다")
     @RequestMapping(value = "sendVoice", method = RequestMethod.POST)
     public String sendVoice(@RequestParam Long roomId, @RequestParam Long registId, @RequestPart MultipartFile files) throws IOException{

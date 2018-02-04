@@ -53,7 +53,7 @@ public class VoiceChatService {
 
         memberRepository.save(user1);
         memberRepository.save(user2);
-        
+
         return createdRoom;
     }
 
@@ -62,8 +62,17 @@ public class VoiceChatService {
         ChatRoom curRoom = chatRoomRepository.findOne(roomId);
         // chatRoom valid 처리?
 
+        // user status 변경
         Member member = memberRepository.findOne(userId);
         member.setStatus("WAITING");
+        memberRepository.save(member);
+    }
+
+    @Transactional
+    public void choice(Long userId){
+        Member member = memberRepository.findOne(userId);
+        member.setStatus("CHOOSING");
+
         memberRepository.save(member);
     }
 

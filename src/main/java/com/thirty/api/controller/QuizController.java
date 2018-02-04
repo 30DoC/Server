@@ -1,7 +1,7 @@
 package com.thirty.api.controller;
 
 import com.thirty.api.dto.QuizRequest;
-import com.thirty.api.dto.QuizResponse;
+import com.thirty.api.response.QuizResponse;
 import com.thirty.api.dto.SubmitAnswer;
 import com.thirty.api.service.QuizService;
 import io.swagger.annotations.Api;

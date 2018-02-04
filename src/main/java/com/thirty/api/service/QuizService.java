@@ -3,7 +3,7 @@ package com.thirty.api.service;
 import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
 import com.thirty.api.dto.QuizRequest;
-import com.thirty.api.dto.QuizResponse;
+import com.thirty.api.response.QuizResponse;
 import com.thirty.api.dto.SubmitAnswer;
 import com.thirty.api.persistence.MemberRepository;
 import com.thirty.api.persistence.QuizRepository;

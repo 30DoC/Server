@@ -1,18 +1,14 @@
 package com.thirty.api.controller;
 
 import com.thirty.api.domain.ChatRoom;
-import com.thirty.api.dto.ChatVoiceResponse;
+import com.thirty.api.response.ChatVoiceResponse;
 import com.thirty.api.service.VoiceChatService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 
 /**

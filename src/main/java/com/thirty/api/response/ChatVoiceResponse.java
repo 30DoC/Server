@@ -1,4 +1,4 @@
-package com.thirty.api.dto;
+package com.thirty.api.response;
 
 import com.thirty.api.domain.ChatVoice;
 import lombok.*;

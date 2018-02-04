@@ -1,6 +1,7 @@
 package com.thirty.api.controller;
 
 import com.thirty.api.domain.Member;
+import com.thirty.api.response.StatusResponse;
 import com.thirty.api.service.MemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,14 +38,16 @@ public class MemberController {
 
     @ApiOperation(value = "check member status", notes = "현재 사용자의 상태를 조회합니다.")
     @RequestMapping(value = "observeStatus", method = RequestMethod.POST)
-    public String observeStatus(@RequestBody Long memberId){
+    public StatusResponse observeStatus(@RequestBody Long memberId){
 
         Member member = memberService.findByMemberId(memberId);
 
         if(member == null){ // 예외처리
-
+            // HTTP STATUS (404) OR String ?
         }
 
-        return member.getStatus();
+        StatusResponse statusResponse = StatusResponse.build(member.getStatus());
+
+        return statusResponse;
     }
 }

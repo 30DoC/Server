@@ -3,7 +3,7 @@ package com.thirty.api.service;
 import com.thirty.api.domain.ChatRoom;
 import com.thirty.api.domain.ChatVoice;
 import com.thirty.api.domain.Member;
-import com.thirty.api.dto.ChatVoiceResponse;
+import com.thirty.api.response.ChatVoiceResponse;
 import com.thirty.api.persistence.ChatRoomRepository;
 import com.thirty.api.persistence.ChatVoiceRepository;
 import com.thirty.api.persistence.MemberRepository;

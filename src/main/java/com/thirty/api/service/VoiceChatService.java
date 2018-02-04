@@ -39,9 +39,21 @@ public class VoiceChatService {
     @Value("${voiceChatApi.fileUrl}")
     private String fileUrl;
 
+    @Transactional
     public ChatRoom createRoom(Long user1Id, Long user2Id){
+        // 채팅방 개설
         ChatRoom createdRoom = chatRoomRepository.save(ChatRoom.build(user1Id, user2Id));
 
+        // user1, user2 status 변경
+        Member user1 = memberRepository.findOne(user1Id);
+        Member user2 = memberRepository.findOne(user2Id);
+
+        user1.setStatus("CHATTING");
+        user2.setStatus("CHATTING");
+
+        memberRepository.save(user1);
+        memberRepository.save(user2);
+        
         return createdRoom;
     }
 

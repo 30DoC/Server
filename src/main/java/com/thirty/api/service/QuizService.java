@@ -72,4 +72,12 @@ public class QuizService {
 
         return percentCA;
     }
+
+    @Transactional
+    public List<Quiz> selectQuizList(Long userId){
+
+        Member member = memberRepository.findOne(userId);
+
+        return member.getQuizList();
+    }
 }

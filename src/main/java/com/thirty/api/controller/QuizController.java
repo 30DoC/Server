@@ -1,5 +1,6 @@
 package com.thirty.api.controller;
 
+import com.thirty.api.domain.Quiz;
 import com.thirty.api.dto.QuizRequest;
 import com.thirty.api.response.QuizResponse;
 import com.thirty.api.dto.SubmitAnswer;
@@ -35,19 +36,28 @@ public class QuizController {
 
     @ApiOperation(value = "submit quiz answer", notes = "사용자가 질문에 대합 답변을 제출하면 퀴즈의 정답률을 리턴합니다.")
     @RequestMapping(value = "submit", method = RequestMethod.POST)
-    public int correctAnswer(@RequestParam Long appId, @RequestBody List<SubmitAnswer> submits){
+    public int correctAnswer(@RequestBody List<SubmitAnswer> submits){
 
         int percentCA = quizService.calPercentCA(submits);
 
         return percentCA;
     }
 
+    @ApiOperation(value = "show user quiz list", notes = "사용자가 등록한 질문 목록을 리턴합니다.")
+    @RequestMapping(value = "inquireQuiz", method = RequestMethod.POST)
+    public List<Quiz> inquireQuiz(@RequestParam Long userId){
+
+        List<Quiz> quizList = quizService.selectQuizList(userId);
+
+        return quizList;
+    }
+
     @ApiOperation(value = "quiz regist", notes = "사용자가 질문을 등록하는 API")
     @RequestMapping(value = "registQuiz", method = RequestMethod.POST)
-    public String registQuiz(@RequestParam Long qsId, @RequestBody List<QuizRequest> questions){
+    public String registQuiz(@RequestParam Long userId, @RequestBody List<QuizRequest> questions){
 
         try {
-            quizService.saveQuiz(qsId, questions);
+            quizService.saveQuiz(userId, questions);
 
             return "success";
         } catch (Exception e){

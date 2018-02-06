@@ -29,6 +29,7 @@ public class MemberService {
         // 질문 등록 전 이므로 null값으로 저장
         for (int i = 0; i < 10; i++) {
             Quiz quiz = Quiz.build(null, false);
+            quizList.add(quiz);
         }
 
         member.setQuizList(quizList);

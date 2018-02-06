@@ -28,9 +28,11 @@ public class MemberController {
         Member member = memberService.findByUniqueKey(uniqueKey);
 
         if(member == null) {
-            Member savedMember = memberService.save(uniqueKey);
+            Long savedMemberId = memberService.save(uniqueKey);
 
-            return savedMember.getMemberId();
+            // 제대로 멤버가 생성되지 않았을 경우 예외처리 ?
+
+            return savedMemberId;
         } else{
             return -1L;
         }

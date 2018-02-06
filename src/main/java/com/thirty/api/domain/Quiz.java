@@ -30,6 +30,9 @@ public class Quiz implements Serializable{
     private Long quizId;
 
     @Column
+    private Long memberId; // Foreign Key
+
+    @Column
     private String question;
 
     @Column

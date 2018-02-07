@@ -40,9 +40,9 @@ public class MemberController {
 
     @ApiOperation(value = "check member status", notes = "현재 사용자의 상태를 조회합니다.")
     @RequestMapping(value = "observeStatus", method = RequestMethod.POST)
-    public StatusResponse observeStatus(@RequestBody Long memberId){
+    public StatusResponse observeStatus(@RequestBody Long userId){
 
-        Member member = memberService.findByMemberId(memberId);
+        Member member = memberService.findByMemberId(userId);
 
         if(member == null){ // 예외처리
             // HTTP STATUS (404) OR String ?

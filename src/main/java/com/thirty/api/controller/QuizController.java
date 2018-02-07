@@ -1,9 +1,8 @@
 package com.thirty.api.controller;
 
 import com.thirty.api.domain.Quiz;
-import com.thirty.api.dto.QuizRequest;
-import com.thirty.api.response.QuizResponse;
 import com.thirty.api.dto.SubmitAnswer;
+import com.thirty.api.response.QuizResponse;
 import com.thirty.api.service.QuizService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -54,10 +53,10 @@ public class QuizController {
 
     @ApiOperation(value = "quiz regist", notes = "사용자가 질문을 등록하는 API")
     @RequestMapping(value = "registQuiz", method = RequestMethod.POST)
-    public String registQuiz(@RequestParam Long userId, @RequestBody List<QuizRequest> questions){
+    public String registQuiz(@RequestParam Long userId, @RequestBody List<Quiz> quizList){
 
         try {
-            quizService.saveQuiz(userId, questions);
+            quizService.saveQuiz(userId, quizList);
 
             return "success";
         } catch (Exception e){

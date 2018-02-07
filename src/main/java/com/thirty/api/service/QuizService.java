@@ -2,16 +2,14 @@ package com.thirty.api.service;
 
 import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
-import com.thirty.api.dto.QuizRequest;
-import com.thirty.api.response.QuizResponse;
 import com.thirty.api.dto.SubmitAnswer;
 import com.thirty.api.persistence.MemberRepository;
 import com.thirty.api.persistence.QuizRepository;
+import com.thirty.api.response.QuizResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,17 +25,24 @@ public class QuizService {
     MemberRepository memberRepository;
 
     @Transactional
-    public void saveQuiz(Long memberId, List<QuizRequest> questions){
+    public void saveQuiz(Long memberId, List<Quiz> quizList){
+        // 퀴즈 등록
         Member member = memberRepository.findOne(memberId);
+        List<Quiz> savedQuizList = member.getQuizList();
 
-        List<Quiz> quizList = new ArrayList<>();
+        for (int i = 0; i < quizList.size(); i++) {
+            // 등록할 질문과 답변
+            String registQ = quizList.get(i).getQuestion();
+            boolean registA = quizList.get(i).isAnswer();
 
-        for (int i = 0; i < questions.size(); i++) {
-            Quiz quiz = Quiz.build(questions.get(i).getQuestion(), questions.get(i).isAnswer());
-            quizList.add(quiz);
+            savedQuizList.get(i).setQuestion(registQ);
+            savedQuizList.get(i).setAnswer(registA);
         }
 
-        member.setQuizList(quizList);
+        member.setQuizList(savedQuizList);
+
+        // 사용자 상태 WAITING으로 변경
+        member.setStatus("WAITING");
 
         memberRepository.save(member);
     }

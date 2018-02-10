@@ -29,6 +29,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-validation')
 	compile('org.springframework.boot:spring-boot-starter-web')
 
+	//Spring AWS SDK
+	compile('com.amazonaws:aws-java-sdk-s3:1.10.6')
+
 	//JSP
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
 

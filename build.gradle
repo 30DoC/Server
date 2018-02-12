@@ -29,9 +29,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-validation')
 	compile('org.springframework.boot:spring-boot-starter-web')
 
-	//Spring AWS SDK
-	compile('com.amazonaws:aws-java-sdk-s3:1.10.6')
-
 	//JSP
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
 
@@ -42,6 +39,9 @@ dependencies {
 	compile("org.webjars:stomp-websocket:2.3.3")
 	compile("org.webjars:bootstrap:3.3.7")
 	compile("org.webjars:jquery:3.1.0")
+
+	//Spring AWS SDK
+	compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.213'
 
 	//Multipart File Up&Download
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'

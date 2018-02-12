@@ -27,7 +27,7 @@ public class ChatVoiceController {
     @Autowired
     ChatVoiceService chatVoiceService;
 
-    @ApiOperation(value = "voice", notes = "상대방에게 음성 파일을 전송합니다.")
+    @ApiOperation(value = "send voice", notes = "상대방에게 음성 파일을 전송합니다.")
     @RequestMapping(value = "sendVoice", method = RequestMethod.POST)
     public PutObjectResult sendVoice(@RequestParam Long roomId, @RequestParam Long registId, @RequestPart MultipartFile files) throws IOException {
 
@@ -41,11 +41,13 @@ public class ChatVoiceController {
         return null;
     }
 
+    @ApiOperation(value = "download voice", notes = "음성파일을 다운로드 합니다.")
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public ResponseEntity<byte[]> download(@RequestParam String key) throws IOException {
         return chatVoiceService.download(key);
     }
 
+    @ApiOperation(value = "bucket list", notes = "버킷 파일 리스트 보기 !!(현재 쓰이지 않음)!!")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<S3ObjectSummary> list() throws IOException {
         return chatVoiceService.list();

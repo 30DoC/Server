@@ -117,6 +117,22 @@ public class ChatVoiceService {
         return new ResponseEntity<>(bytes, httpHeaders, HttpStatus.OK);
     }
 
+    @Transactional
+    public ChatVoiceResponse observeChat(Long roomId, int offset){
+        ChatRoom chatRoom = chatRoomRepository.findOne(roomId);
+        List<ChatVoice> chatVoiceList = chatRoom.getChatVoiceList();
+
+        List<ChatVoice> resultVoiceList = new ArrayList<>();
+
+        for (int i = offset; i < chatVoiceList.size(); i++) {
+            resultVoiceList.add(chatVoiceList.get(i));
+        }
+
+        ChatVoiceResponse chatVoiceResponse = ChatVoiceResponse.build(chatVoiceList.size(), resultVoiceList);
+
+        return chatVoiceResponse;
+    }
+
 
     public List<S3ObjectSummary> list() {
         ObjectListing objectListing = amazonS3Client.listObjects(new ListObjectsRequest().withBucketName(bucket));

@@ -37,8 +37,7 @@ public class ChatVoiceController {
     @ApiOperation(value = "observe chat room", notes = "채팅 방 ID와 offset을 받으면 갱신 된 채팅 방 내용을 받아옵니다.")
     @RequestMapping(value = "observeRoom", method = RequestMethod.POST)
     public ChatVoiceResponse observeRoom(@RequestParam Long roomId, @RequestParam int offset) {
-        //return voiceChatService.observeRoom(roomId, offset);
-        return null;
+        return chatVoiceService.observeChat(roomId, offset);
     }
 
     @ApiOperation(value = "download voice", notes = "음성파일을 다운로드 합니다.")

@@ -62,20 +62,4 @@ public class ChatRoomService {
 
         memberRepository.save(member);
     }
-
-    @Transactional
-    public ChatVoiceResponse observeRoom(Long roomId, int offset){
-        ChatRoom chatRoom = chatRoomRepository.findOne(roomId);
-        List<ChatVoice> chatVoiceList = chatRoom.getChatVoiceList();
-
-        List<ChatVoice> resultVoiceList = new ArrayList<>();
-
-        for (int i = offset; i < chatVoiceList.size(); i++) {
-            resultVoiceList.add(chatVoiceList.get(i));
-        }
-
-        ChatVoiceResponse chatVoiceResponse = ChatVoiceResponse.build(chatVoiceList.size(), resultVoiceList);
-
-        return chatVoiceResponse;
-    }
 }

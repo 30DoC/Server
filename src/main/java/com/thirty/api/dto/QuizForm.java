@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegistQuiz implements Serializable{
+public class QuizForm implements Serializable{
     /**
      * 등록할 질문
      * 등록할 답변
@@ -25,8 +25,8 @@ public class RegistQuiz implements Serializable{
 
     private boolean answer;
 
-    public static RegistQuiz build(String question, boolean answer){
-        return RegistQuiz.builder()
+    public static QuizForm build(String question, boolean answer){
+        return QuizForm.builder()
                 .question(question)
                 .answer(answer)
                 .build();

@@ -19,15 +19,12 @@ public class SubmitAnswer implements Serializable{
      * 퀴즈 답안
      * 사용자가 제출한 답
      */
-    private Long userId;
-
     private boolean answer;
 
     private boolean submitAnswer;
 
-    public static SubmitAnswer build(Long userId, boolean answer, boolean submitAnswer){
+    public static SubmitAnswer build(boolean answer, boolean submitAnswer){
         return SubmitAnswer.builder()
-                .userId(userId)
                 .answer(answer)
                 .submitAnswer(submitAnswer)
                 .build();

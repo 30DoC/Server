@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -80,10 +81,20 @@ public class QuizService {
     }
 
     @Transactional
-    public List<Quiz> selectQuizList(Long userId){
+    public List<QuizForm> selectQuizList(Long userId){
 
         Member member = memberRepository.findOne(userId);
 
-        return member.getQuizList();
+        List<Quiz> savedQuizList = member.getQuizList();
+        List<QuizForm> quizList = new ArrayList<>();
+
+        for (int i = 0; i < savedQuizList.size(); i++) {
+            QuizForm quiz = QuizForm.build(savedQuizList.get(i).getQuestion(),
+                    savedQuizList.get(i).isAnswer());
+
+            quizList.add(quiz);
+        }
+
+        return quizList;
     }
 }

@@ -45,9 +45,9 @@ public class QuizController {
 
     @ApiOperation(value = "show user quiz list", notes = "사용자가 등록한 질문 목록을 리턴합니다.")
     @RequestMapping(value = "inquireQuiz", method = RequestMethod.POST)
-    public List<Quiz> inquireQuiz(@RequestParam Long userId){
+    public List<QuizForm> inquireQuiz(@RequestParam Long userId){
 
-        List<Quiz> quizList = quizService.selectQuizList(userId);
+        List<QuizForm> quizList = quizService.selectQuizList(userId);
 
         return quizList;
     }

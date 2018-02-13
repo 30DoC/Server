@@ -1,6 +1,6 @@
 package com.thirty.api.response;
 
-import com.thirty.api.domain.Quiz;
+import com.thirty.api.dto.QuizForm;
 import lombok.*;
 
 import java.util.List;
@@ -21,9 +21,9 @@ public class QuizResponse {
      */
     private Long memberId;
 
-    private List<Quiz> quizList;
+    private List<QuizForm> quizList;
 
-    public static QuizResponse build(Long memberId, List<Quiz> quizList){
+    public static QuizResponse build(Long memberId, List<QuizForm> quizList){
         return QuizResponse.builder()
                 .memberId(memberId)
                 .quizList(quizList)

@@ -1,6 +1,5 @@
 package com.thirty.api.controller;
 
-import com.thirty.api.domain.Quiz;
 import com.thirty.api.dto.QuizForm;
 import com.thirty.api.dto.SubmitAnswer;
 import com.thirty.api.response.QuizResponse;

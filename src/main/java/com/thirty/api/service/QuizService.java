@@ -58,7 +58,15 @@ public class QuizService {
             return null;
         }
 
-        List<Quiz> quizList = member.getQuizList();
+        List<Quiz> savedQuizList = member.getQuizList();
+        List<QuizForm> quizList = new ArrayList<>();
+
+        for (int i = 0; i < savedQuizList.size(); i++) {
+            QuizForm quiz = QuizForm.build(savedQuizList.get(i).getQuestion(),
+                    savedQuizList.get(i).isAnswer());
+
+            quizList.add(quiz);
+        }
 
         QuizResponse quizResponse = QuizResponse.build(member.getMemberId(), quizList);
 

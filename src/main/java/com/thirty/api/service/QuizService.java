@@ -2,6 +2,7 @@ package com.thirty.api.service;
 
 import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
+import com.thirty.api.dto.RegistQuiz;
 import com.thirty.api.dto.SubmitAnswer;
 import com.thirty.api.persistence.MemberRepository;
 import com.thirty.api.persistence.QuizRepository;
@@ -25,7 +26,7 @@ public class QuizService {
     MemberRepository memberRepository;
 
     @Transactional
-    public void saveQuiz(Long memberId, List<Quiz> quizList){
+    public void saveQuiz(Long memberId, List<RegistQuiz> quizList){
         // 퀴즈 등록
         Member member = memberRepository.findOne(memberId);
         List<Quiz> savedQuizList = member.getQuizList();

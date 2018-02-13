@@ -4,14 +4,11 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.*;
 import com.thirty.api.domain.ChatRoom;
 import com.thirty.api.domain.ChatVoice;
-import com.thirty.api.domain.Member;
-import com.thirty.api.response.ChatVoiceResponse;
 import com.thirty.api.persistence.ChatRoomRepository;
 import com.thirty.api.persistence.ChatVoiceRepository;
 import com.thirty.api.persistence.MemberRepository;
-import org.apache.commons.io.FilenameUtils;
+import com.thirty.api.response.ChatVoiceResponse;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -20,13 +17,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

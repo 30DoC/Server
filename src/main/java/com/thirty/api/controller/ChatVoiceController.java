@@ -44,6 +44,9 @@ public class ChatVoiceController {
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public ResponseEntity<byte[]> download(@RequestParam String key) throws IOException {
         return chatVoiceService.download(key);
+
+        // Type 2. 링크로 주는 방법
+        // https://s3.ap-northeast-2.amazonaws.com/jobc-bucket-1/testaudio.mp3
     }
 
     @ApiOperation(value = "bucket list", notes = "버킷 파일 리스트 보기 !!(현재 쓰이지 않음)!!")

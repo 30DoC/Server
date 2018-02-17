@@ -15,7 +15,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class SubmitAnswer implements Serializable{
     /**
-     * 데이터베이스 상대방 ID
      * 퀴즈 답안
      * 사용자가 제출한 답
      */

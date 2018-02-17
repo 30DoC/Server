@@ -1,5 +1,6 @@
 package com.thirty.api.controller;
 
+import com.thirty.api.common.NotFoundException;
 import com.thirty.api.domain.ChatRoom;
 import com.thirty.api.service.ChatRoomService;
 import io.swagger.annotations.Api;
@@ -30,6 +31,10 @@ public class ChatRoomController {
         // 상대방이 WAITING인지 확인하고 채팅방을 개설해야함
 
         ChatRoom createdRoom = chatRoomService.createRoom(user1Id, user2Id);
+
+        if(createdRoom == null){
+            throw new NotFoundException();
+        }
 
         return createdRoom.getRoomId();
     }

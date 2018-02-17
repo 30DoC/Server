@@ -60,7 +60,7 @@ public class ChatVoiceService {
         ////////////////////
         PutObjectResult putObjectResult = new PutObjectResult();
 
-        // file null 체크 ?
+        // 파일 이름 중복 체크 ?
 
         try {
             putObjectResult = upload(files.getInputStream(), filename);

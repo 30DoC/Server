@@ -28,8 +28,6 @@ public class ChatRoomController {
         // Exception 처리
 
         // 상대방에게 push 보내야 함
-        // 상대방이 WAITING인지 확인하고 채팅방을 개설해야함
-
         ChatRoom createdRoom = chatRoomService.createRoom(user1Id, user2Id);
 
         if(createdRoom == null){

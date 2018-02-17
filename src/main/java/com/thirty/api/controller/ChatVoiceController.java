@@ -31,6 +31,10 @@ public class ChatVoiceController {
     @RequestMapping(value = "sendVoice", method = RequestMethod.POST)
     public PutObjectResult sendVoice(@RequestParam Long roomId, @RequestParam Long registId, @RequestPart MultipartFile files) throws IOException {
 
+        if(files == null){
+
+        }
+
         return chatVoiceService.sendVoice(roomId, registId, files);
     }
 

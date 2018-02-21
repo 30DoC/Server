@@ -28,7 +28,7 @@ public class QuizService {
     MemberRepository memberRepository;
 
     @Transactional
-    public void saveQuiz(RegistQuizForm registQuizForm){
+    public String saveQuiz(RegistQuizForm registQuizForm){
 
         Long memberId = registQuizForm.getUserId();
         List<QuizForm> quizList = registQuizForm.getQuizFormList();
@@ -50,8 +50,9 @@ public class QuizService {
 
         // 사용자 상태 WAITING으로 변경
         member.setStatus("WAITING");
-
         memberRepository.save(member);
+
+        return member.getStatus();
     }
 
     @Transactional

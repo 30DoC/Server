@@ -26,8 +26,8 @@ public class ChatRoomController {
     private static final String NEW_LINE = "\n";
 
     @ApiOperation(value = "create room", notes = "두 사용자의 ID user1, user2를 받아서 채팅 방이 개설됩니다." +
-            NEW_LINE + "user1, user2의 상태가 WAITING인지 확인 후, 방을 개설하고 두 유저의 상태를" +
-            NEW_LINE + "CHATTING으로 변경합니다. 리턴 값은 개설된 방 ID")
+            NEW_LINE + " user1, user2의 상태가 WAITING인지 확인 후, 방을 개설하고 두 유저의 상태를 CHATTING으로 변경합니다." +
+            NEW_LINE + "리턴 값은 개설된 방 ID")
     @RequestMapping(value = "createRoom", method = RequestMethod.POST)
     public RoomIdResponse createRoom(@RequestParam Long user1Id, @RequestParam Long user2Id) {
 

@@ -51,7 +51,7 @@ public class ChatRoomService {
     }
 
     @Transactional
-    public void quitRoom(Long roomId, Long userId){
+    public Long quitRoom(Long roomId, Long userId){
         ChatRoom curRoom = chatRoomRepository.findOne(roomId);
         // chatRoom valid 처리?
 
@@ -59,13 +59,17 @@ public class ChatRoomService {
         Member member = memberRepository.findOne(userId);
         member.setStatus("WAITING");
         memberRepository.save(member);
+
+        return curRoom.getRoomId();
     }
 
     @Transactional
-    public void choice(Long userId){
+    public Long choice(Long userId){
         Member member = memberRepository.findOne(userId);
         member.setStatus("CHOOSING");
 
         memberRepository.save(member);
+
+        return member.getMemberId();
     }
 }

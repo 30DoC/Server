@@ -16,6 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 public class ChatVoiceResponse {
 
+    /**
+     * offset 값
+     * 갱신된 chat voice 리스트
+     */
+
     private int offset;
 
     private List<ChatVoice> chatVoiceList;

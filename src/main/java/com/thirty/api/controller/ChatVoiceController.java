@@ -38,7 +38,9 @@ public class ChatVoiceController {
         return chatVoiceService.sendVoice(roomId, registId, files);
     }
 
-    @ApiOperation(value = "observe chat room", notes = "채팅 방 ID와 offset을 받으면 갱신 된 채팅 방 내용을 받아옵니다.")
+    @ApiOperation(value = "observe chat room", notes = "채팅 방 ID와 offset을 받으면 갱신 된 채팅 방 내용을 받아옵니다." +
+            "리턴 값은 갱신된 가장 최근 offset과 이전 offset ~ 최근 offset 사이의 음성파일 목록을 리턴." +
+            "실제로 음성파일이 넘어가는 것이 아닌 음성파일의 목록들만 리턴합니다. ")
     @RequestMapping(value = "observeRoom", method = RequestMethod.POST)
     public ChatVoiceResponse observeRoom(@RequestParam Long roomId, @RequestParam int offset) {
         return chatVoiceService.observeChat(roomId, offset);

@@ -6,7 +6,6 @@ import com.thirty.api.response.UserIdResponse;
 import com.thirty.api.service.MemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +37,7 @@ public class MemberController {
         } else{
             userIdResponse = UserIdResponse.build(-1L);
         }
-        
+
         return userIdResponse;
     }
 

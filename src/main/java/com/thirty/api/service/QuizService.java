@@ -3,6 +3,7 @@ package com.thirty.api.service;
 import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
 import com.thirty.api.dto.QuizForm;
+import com.thirty.api.dto.RegistQuizForm;
 import com.thirty.api.dto.SubmitAnswer;
 import com.thirty.api.persistence.MemberRepository;
 import com.thirty.api.persistence.QuizRepository;
@@ -27,7 +28,11 @@ public class QuizService {
     MemberRepository memberRepository;
 
     @Transactional
-    public void saveQuiz(Long memberId, List<QuizForm> quizList){
+    public void saveQuiz(RegistQuizForm registQuizForm){
+
+        Long memberId = registQuizForm.getUserId();
+        List<QuizForm> quizList = registQuizForm.getQuizFormList();
+
         // 퀴즈 등록
         Member member = memberRepository.findOne(memberId);
         List<Quiz> savedQuizList = member.getQuizList();

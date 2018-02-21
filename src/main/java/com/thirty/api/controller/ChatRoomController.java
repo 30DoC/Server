@@ -23,7 +23,11 @@ public class ChatRoomController {
     @Autowired
     ChatRoomService chatRoomService;
 
-    @ApiOperation(value = "create room", notes = "두 사용자의 ID user1, user2를 받아서 채팅 방이 개설됩니다. 리턴 값은 개설된 방 ID")
+    private static final String NEW_LINE = "\n";
+
+    @ApiOperation(value = "create room", notes = "두 사용자의 ID user1, user2를 받아서 채팅 방이 개설됩니다." +
+            NEW_LINE + "user1, user2의 상태가 WAITING인지 확인 후, 방을 개설하고 두 유저의 상태를" +
+            NEW_LINE + "CHATTING으로 변경합니다. 리턴 값은 개설된 방 ID")
     @RequestMapping(value = "createRoom", method = RequestMethod.POST)
     public RoomIdResponse createRoom(@RequestParam Long user1Id, @RequestParam Long user2Id) {
 
@@ -41,7 +45,8 @@ public class ChatRoomController {
         return roomIdResponse;
     }
 
-    @ApiOperation(value = "quit room", notes = "사용자 ID와 채팅 방 ID를 받아서 채팅 방을 나갑니다.")
+    @ApiOperation(value = "quit room", notes = "나가려는 사용자 ID와 채팅 방 ID를 받아서 채팅 방을 나갑니다" +
+            NEW_LINE + "user의 상태는 WAITING으로 변경되고 나간 채팅방 ID를 리턴합니다.")
     @RequestMapping(value = "quitRoom", method = RequestMethod.POST)
     public RoomIdResponse quitRoom(@RequestParam Long roomId, @RequestParam Long userId) {
 
@@ -51,7 +56,8 @@ public class ChatRoomController {
         return roomIdResponse;
     }
 
-    @ApiOperation(value = "choice", notes = "사용자가 채팅을 선택하고 있는 화면. 사용자의 상태를 CHOOSING으로 변경합니다.")
+    @ApiOperation(value = "choice", notes = "사용자가 채팅을 선택하고 있는 화면. 사용자의 상태를 CHOOSING으로 변경합니다." +
+            NEW_LINE + "성공적으로 상태가 바뀌면 user ID를 그대로 리턴합니다.")
     @RequestMapping(value = "choice", method = RequestMethod.POST)
     public UserIdResponse choice(@RequestParam Long userId) {
 

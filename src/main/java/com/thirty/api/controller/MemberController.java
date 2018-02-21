@@ -23,7 +23,7 @@ public class MemberController {
 
     @ApiOperation(value = "login", notes = "로그인 성공 시 회원 id값을 리턴하고 실패 시 -1을 리턴합니다.")
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public Long login(@RequestBody String uniqueKey){
+    public Long login(@RequestParam String uniqueKey){
 
         Member member = memberService.findByUniqueKey(uniqueKey);
 
@@ -40,7 +40,7 @@ public class MemberController {
 
     @ApiOperation(value = "check member status", notes = "현재 사용자의 상태를 조회합니다.")
     @RequestMapping(value = "observeStatus", method = RequestMethod.POST)
-    public StatusResponse observeStatus(@RequestBody Long userId){
+    public StatusResponse observeStatus(@RequestParam Long userId){
 
         Member member = memberService.findByMemberId(userId);
 

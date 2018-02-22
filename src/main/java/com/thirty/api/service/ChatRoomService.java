@@ -27,27 +27,32 @@ public class ChatRoomService {
     MemberRepository memberRepository;
 
     @Transactional
-    public ChatRoom createRoom(Long user1Id, Long user2Id){
+    public String createRoom(Long user1Id, Long user2Id){
         Member user1 = memberRepository.findOne(user1Id);
         Member user2 = memberRepository.findOne(user2Id);
 
-        ChatRoom createdRoom;
-
+        String result = "FAIL";
         // 만약 둘다 대기중인 상태라면 채팅방 개설
         if(user1.getStatus().equals("WAITING") && user2.getStatus().equals("WAITING")){
-            createdRoom = chatRoomRepository.save(ChatRoom.build(user1Id, user2Id));
+            chatRoomRepository.save(ChatRoom.build(user1Id, user2Id));
+
+            // user1, user2 status 변경
+            user1.setStatus("CHATTING");
+            user2.setStatus("CHATTING");
+
+            memberRepository.save(user1);
+            memberRepository.save(user2);
+
+            result = "SUCCESS";
+        } else if(user2.getStatus().equals("CHOOSING")){
+            result = "CHOOSING";
+        } else if(user2.getStatus().equals("CHATTING")){
+            result = "CHATTING";
         } else{
-            createdRoom = null;
+            result = "FAIL";
         }
 
-        // user1, user2 status 변경
-        user1.setStatus("CHATTING");
-        user2.setStatus("CHATTING");
-
-        memberRepository.save(user1);
-        memberRepository.save(user2);
-
-        return createdRoom;
+        return result;
     }
 
     @Transactional

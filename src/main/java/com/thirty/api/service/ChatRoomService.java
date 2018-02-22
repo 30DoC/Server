@@ -73,4 +73,14 @@ public class ChatRoomService {
 
         return member.getMemberId();
     }
+
+    @Transactional
+    public Long choiceCancel(Long userId){
+        Member member = memberRepository.findOne(userId);
+        member.setStatus("WAITING");
+
+        memberRepository.save(member);
+
+        return member.getMemberId();
+    }
 }

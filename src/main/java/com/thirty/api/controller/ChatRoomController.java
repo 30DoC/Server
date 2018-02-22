@@ -66,4 +66,16 @@ public class ChatRoomController {
 
         return userIdResponse;
     }
+
+    @ApiOperation(value = "choice cancel", notes = "사용자가 채팅을 안하고 취소합니다. 사용자의 상태를 다시 WAITING으로 변경합니다." +
+            NEW_LINE + "성공적으로 상태가 바뀌면 user ID를 그대로 리턴합니다.")
+    @RequestMapping(value = "choiceCancel", method = RequestMethod.POST)
+    public UserIdResponse choiceCancel(@RequestParam Long userId) {
+
+        // 선택할 때 납치안해가는게 좋을듯
+        Long memberId = chatRoomService.choiceCancel(userId);
+        UserIdResponse userIdResponse = UserIdResponse.build(memberId);
+
+        return userIdResponse;
+    }
 }

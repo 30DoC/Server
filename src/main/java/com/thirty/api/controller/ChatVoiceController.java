@@ -30,7 +30,6 @@ public class ChatVoiceController {
     @ApiOperation(value = "send voice", notes = "상대방에게 음성 파일을 전송합니다.")
     @RequestMapping(value = "sendVoice", method = RequestMethod.POST)
     public PutObjectResult sendVoice(@RequestParam Long roomId, @RequestParam Long registId, @RequestPart MultipartFile files) throws IOException {
-
         if(files == null){
 
         }

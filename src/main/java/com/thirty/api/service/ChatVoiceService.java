@@ -50,7 +50,7 @@ public class ChatVoiceService {
     private String bucket;
 
     @Transactional
-    public PutObjectResult sendVoice(Long roomId, Long registId, MultipartFile files) throws IOException{
+    public PutObjectResult sendVoice(Long roomId, Long registId, MultipartFile files) throws IOException {
 
         // 파일 이름 읽어오기
         String filename = files.getOriginalFilename();
@@ -60,7 +60,16 @@ public class ChatVoiceService {
         ////////////////////
         PutObjectResult putObjectResult = new PutObjectResult();
 
-        // 파일 이름 중복 체크 ?
+        /** 파일 이름 중복 체크
+         StringBuilder sb = new StringBuilder();
+
+         ObjectListing objectListing = amazonS3Client.listObjects(new ListObjectsRequest().withBucketName(bucket));
+         List<S3ObjectSummary> s3ObjectSummaries = objectListing.getObjectSummaries();
+
+         for (int i = 0; i < s3ObjectSummaries.size(); i++) {
+         sb.append(i).append(s3ObjectSummaries.get(i).getKey()).append("\n");
+         }
+         **/
 
         try {
             putObjectResult = upload(files.getInputStream(), filename);
@@ -116,7 +125,7 @@ public class ChatVoiceService {
     }
 
     @Transactional
-    public ChatVoiceResponse observeChat(Long roomId, int offset){
+    public ChatVoiceResponse observeChat(Long roomId, int offset) {
         ChatRoom chatRoom = chatRoomRepository.findOne(roomId);
         List<ChatVoice> chatVoiceList = chatRoom.getChatVoiceList();
 

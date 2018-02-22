@@ -27,22 +27,21 @@ public class ChatRoomController {
     private static final String NEW_LINE = "\n";
 
     @ApiOperation(value = "create room", notes = "두 사용자의 ID user1, user2를 받아서 채팅 방이 개설됩니다." +
-            NEW_LINE + " user1, user2의 상태가 WAITING인지 확인 후, 방을 개설하고 두 유저의 상태를 CHATTING으로 변경합니다." +
-            NEW_LINE + "리턴 값은 네 가지 경우가 있습니다. / SUCCESS : 방이 성공적으로 개설된 경우 / CHOOSING : 상대방이 다른 방을 선택하고 있는 경우" +
-            NEW_LINE + "CHATTING : 상대방이 이미 채팅하고 있는경우 / FAIL : ?")
+            NEW_LINE + "user2의 상태가 WAITING인지 확인 후, 방을 개설하고 두 유저의 상태를 CHATTING으로 변경합니다." +
+            NEW_LINE + "방이 성공적으로 개설되면 방번호를 리턴해주고 상대방이 이미 채팅중이거나 선택중일 경우 -1을 리턴합니다.")
     @RequestMapping(value = "createRoom", method = RequestMethod.POST)
-    public ResultResponse createRoom(@RequestParam Long user1Id, @RequestParam Long user2Id) {
+    public RoomIdResponse createRoom(@RequestParam Long user1Id, @RequestParam Long user2Id) {
 
         // 상대방에게 push 보내야 함
-        String result = chatRoomService.createRoom(user1Id, user2Id);
-        ResultResponse resultResponse = ResultResponse.build(result);
+        Long roomId = chatRoomService.createRoom(user1Id, user2Id);
+        RoomIdResponse roomIdResponse = RoomIdResponse.build(roomId);
 
-        if(resultResponse == null){
+        if(roomIdResponse == null){
             // 404Error OR -1L ?
             throw new NotFoundException();
         }
 
-        return resultResponse;
+        return roomIdResponse;
     }
 
     @ApiOperation(value = "quit room", notes = "나가려는 사용자 ID와 채팅 방 ID를 받아서 채팅 방을 나갑니다" +

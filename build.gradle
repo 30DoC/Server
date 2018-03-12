@@ -59,6 +59,10 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
 
+	//EhCache
+	compile('org.springframework.boot:spring-boot-starter-cache')
+	compile group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.3'
+
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')

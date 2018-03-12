@@ -11,6 +11,7 @@ import com.thirty.api.response.ChatVoiceResponse;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -125,6 +126,7 @@ public class ChatVoiceService {
     }
 
     @Transactional
+    @Cacheable(value="findIdCache", key="#roomId")
     public ChatVoiceResponse observeChat(Long roomId, int offset) {
         ChatRoom chatRoom = chatRoomRepository.findOne(roomId);
         List<ChatVoice> chatVoiceList = chatRoom.getChatVoiceList();

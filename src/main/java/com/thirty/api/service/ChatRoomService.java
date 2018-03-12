@@ -33,7 +33,7 @@ public class ChatRoomService {
 
         Long createdRoomId;
         // 만약 상대방이 대기중인 상태라면 채팅방 개설
-        if( user2.getStatus().equals("WAITING")){
+        if(user2.getStatus().equals("WAITING")){
             ChatRoom createdRoom = chatRoomRepository.save(ChatRoom.build(user1Id, user2Id));
 
             // user1, user2 status 변경

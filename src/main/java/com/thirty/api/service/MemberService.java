@@ -4,6 +4,7 @@ import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
 import com.thirty.api.persistence.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,5 +42,6 @@ public class MemberService {
 
     public Member findByUniqueKey(String uniqueKey){ return memberRepository.findByUniqueKey(uniqueKey); }
 
+    @Cacheable(value="findIdCache", key="#memberId")
     public Member findByMemberId(Long memberId){ return memberRepository.findOne(memberId); }
 }

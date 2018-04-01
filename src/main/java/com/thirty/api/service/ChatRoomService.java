@@ -3,6 +3,7 @@ package com.thirty.api.service;
 import com.thirty.api.domain.ChatRoom;
 import com.thirty.api.domain.ChatVoice;
 import com.thirty.api.domain.Member;
+import com.thirty.api.dto.StatusType;
 import com.thirty.api.persistence.ChatRoomRepository;
 import com.thirty.api.persistence.MemberRepository;
 import com.thirty.api.response.ChatVoiceResponse;
@@ -33,12 +34,12 @@ public class ChatRoomService {
 
         Long createdRoomId;
         // 만약 상대방이 대기중인 상태라면 채팅방 개설
-        if(user2.getStatus().equals("WAITING")){
+        if(user2.getStatus().name().equals("WAITING")){
             ChatRoom createdRoom = chatRoomRepository.save(ChatRoom.build(user1Id, user2Id));
 
             // user1, user2 status 변경
-            user1.setStatus("CHATTING");
-            user2.setStatus("CHATTING");
+            user1.setStatus(StatusType.CHATTING);
+            user2.setStatus(StatusType.CHATTING);
 
             memberRepository.save(user1);
             memberRepository.save(user2);
@@ -58,7 +59,7 @@ public class ChatRoomService {
 
         // user status 변경
         Member member = memberRepository.findOne(userId);
-        member.setStatus("WAITING");
+        member.setStatus(StatusType.WAITING);
         memberRepository.save(member);
 
         return curRoom.getRoomId();
@@ -67,7 +68,7 @@ public class ChatRoomService {
     @Transactional
     public Long choice(Long userId){
         Member member = memberRepository.findOne(userId);
-        member.setStatus("CHOOSING");
+        member.setStatus(StatusType.CHOOSING);
 
         memberRepository.save(member);
 
@@ -77,7 +78,7 @@ public class ChatRoomService {
     @Transactional
     public Long choiceCancel(Long userId){
         Member member = memberRepository.findOne(userId);
-        member.setStatus("WAITING");
+        member.setStatus(StatusType.WAITING);
 
         memberRepository.save(member);
 

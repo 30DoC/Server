@@ -4,6 +4,7 @@ import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
 import com.thirty.api.dto.QuizForm;
 import com.thirty.api.dto.RegistQuizForm;
+import com.thirty.api.dto.StatusType;
 import com.thirty.api.dto.SubmitAnswer;
 import com.thirty.api.persistence.MemberRepository;
 import com.thirty.api.persistence.QuizRepository;
@@ -49,10 +50,10 @@ public class QuizService {
         member.setQuizList(savedQuizList);
 
         // 사용자 상태 WAITING으로 변경
-        member.setStatus("WAITING");
+        member.setStatus(StatusType.WAITING);
         memberRepository.save(member);
 
-        return member.getStatus();
+        return member.getStatus().name();
     }
 
     @Transactional

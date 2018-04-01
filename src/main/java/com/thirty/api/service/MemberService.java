@@ -2,6 +2,7 @@ package com.thirty.api.service;
 
 import com.thirty.api.domain.Member;
 import com.thirty.api.domain.Quiz;
+import com.thirty.api.dto.StatusType;
 import com.thirty.api.persistence.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -22,7 +23,7 @@ public class MemberService {
 
     @Transactional
     public Long save(String uniqueKey){
-        Member member = Member.build(uniqueKey, "NONE");
+        Member member = Member.build(uniqueKey, StatusType.NONE);
 
         List<Quiz> quizList = new ArrayList<>();
 

@@ -56,7 +56,7 @@ public class MemberController {
             // HTTP STATUS (404) OR String ?
         }
 
-        StatusResponse statusResponse = StatusResponse.build(member.getStatus());
+        StatusResponse statusResponse = StatusResponse.build(member.getStatus().name());
 
         return statusResponse;
     }

@@ -1,6 +1,7 @@
 package com.thirty.api.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.thirty.api.dto.StatusType;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -34,7 +35,8 @@ public class Member implements Serializable{
     private String uniqueKey;
 
     @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StatusType status;
 
     @Column
     @CreationTimestamp
@@ -45,7 +47,7 @@ public class Member implements Serializable{
     @JoinColumn(name="memberId")
     private List<Quiz> quizList;
 
-    public static Member build(String uniqueKey, String status) {
+    public static Member build(String uniqueKey, StatusType status) {
         return Member.builder()
                 .uniqueKey(uniqueKey)
                 .status(status)
